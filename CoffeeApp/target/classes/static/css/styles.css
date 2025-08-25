@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --font-family: 'Poppins', sans-serif;
+    --primary: #22a722;
+    --secondary: #222;
+    --accent: #198c19;
+    --background: #f8f9fa;
+    --container-bg: #fff;
+    --card-bg: #fff;
+    --light-bg: #f8f9fa;
+    --btn-view: #22a722;
+    --btn-edit: #198c19;
+    --btn-delete: #d9534f;
+    --btn-edit-hover: #157c15;
+    --btn-delete-hover: #b52a2a;
+    --btn-view-hover: #198c19;
+    --border-radius: 0.75rem;
+    --transition: all 0.2s ease-in-out;
+    --box-shadow: 0 4px 12px rgba(34, 167, 34, 0.08);
+    --form-border: #d1e7dd;
+    --success-bg: #e6f9ea;
+    --success-border: #22a722;
+    --success-text: #198c19;
+    --error-bg: #fceaea;
+    --error-border: #d9534f;
+    --error-text: #b52a2a;
+    --warning-bg: #fffbe6;
+    --warning-border: #ffe066;
+    --warning-text: #b89b7e;
+}
+
+main {
+    padding: 2rem;
+    font-family: var(--font-family);
+    background-color: var(--background);
+    color: var(--secondary);
+}
+
+.container {
+    background-color: var(--container-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-family: var(--font-family);
+}
+
+a, a:link {
+    color: var(--primary);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent);
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--form-border);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    background: var(--light-bg);
+    color: var(--secondary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(34, 167, 34, 0.15);
+}
+
+button, .button {
+    box-sizing: border-box;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-family: var(--font-family);
+}
+
+button:hover, .button:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+a.button.success {
+    padding: 0.4rem 1rem;
+    color: var(--success-text);
+    border: 2px solid var(--success-border);
+    background: #fff;
+}
+
+a.button.error {
+    padding: 0.4rem 1rem;
+    color: var(--error-text);
+    border: 2px solid var(--error-border);
+    background: #fff;
+}
+
+a.button.warning {
+    padding: 0.4rem 1rem;
+    color: var(--warning-text);
+    border: 2px solid var(--warning-border);
+    background: #fff;
+}
+
+a.button:hover {
+    text-decoration: none;
+}
+
+a.button.success:hover {
+    background: var(--success-bg);
+}
+a.button.error:hover {
+    background: var(--error-bg);
+}
+a.button.warning:hover {
+    background: var(--warning-bg);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #d1e7dd;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--secondary);
+}
+
+th {
+    background-color: var(--primary);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f1fdf3;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.action-links a {
+    padding: 6px 12px;
+    margin: 4px 2px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    border-radius: var(--border-radius);
+    min-width: 55px;
+    text-align: center;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.view-btn {
+    background-color: var(--btn-view);
+    color: #fff;
+}
+.view-btn:hover {
+    background-color: var(--btn-view-hover);
+}
+
+.edit-btn {
+    background-color: var(--btn-edit);
+    color: #fff;
+}
+.edit-btn:hover {
+    background-color: var(--btn-edit-hover);
+}
+
+.delete-btn {
+    background-color: var(--btn-delete);
+    color: #fff;
+}
+.delete-btn:hover {
+    background-color: var(--btn-delete-hover);
+}
+
+@media (max-width: 900px) {
+    main {
+        padding: 1rem;
+    }
+    .container {
+        padding: 1rem;
+    }
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+    table {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,144 @@
+:root {
+    --primary: #22a722; /* green accent */
+    --background: #f8f9fa; /* light background */
+    --card-bg: #fff; /* white card */
+    --form-border: #d1e7dd; /* light green border */
+    --error: #d9534f;
+    --border-radius: 0.75rem;
+    --transition: all 0.3s ease-in-out;
+    --font-sans: 'Poppins', system-ui, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--background);
+    color: #222;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    display: flex;
+    max-width: 900px;
+    width: 90%;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(34, 167, 34, 0.08);
+}
+
+/* Left Form Section */
+.login-form-section {
+    flex: 1;
+    padding: 2rem;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.login-form-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.login-form-section input {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--form-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: #f8f9fa;
+    color: #222;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.login-form-section input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(34, 167, 34, 0.15);
+}
+
+input.error {
+    border-color: var(--error);
+    background-color: #fceaea;
+    color: #8a2c2c;
+}
+
+.error-text,
+.error {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin: 0.25rem 0;
+}
+
+.login-form-section button {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.login-form-section button:hover {
+    background: #198c19;
+}
+
+/* Right SVG Section */
+.login-details {
+    width: 50%;
+    background: var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.coffee-illustration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.coffee-svg {
+    width: 180px;
+    height: auto;
+}
+
+.steam {
+    fill: none;
+    stroke: #f3e9dc;
+    stroke-width: 2;
+    stroke-linecap: round;
+    animation: steam-rise 2s infinite ease-in-out;
+}
+
+.coffee-caption {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: var(--primary);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
