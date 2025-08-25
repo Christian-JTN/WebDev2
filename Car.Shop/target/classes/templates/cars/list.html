@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-color: #2d5016;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .actions {
+            padding: 15px 20px;
+            background: #d4edda;
+            border-bottom: 1px solid #a8d5b5;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4fd96f;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        
+        .car-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .car-table th {
+            background-color: #2d5016;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .car-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #d4edda;
+        }
+        
+        .car-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .badge {
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .badge-sedan { background: #28a745; color: white; }
+        .badge-suv { background: #20c997; color: white; }
+        .badge-hatchback { background: #17a2b8; color: white; }
+        
+        .badge-gasoline { background: #fd7e14; color: white; }
+        .badge-diesel { background: #6f42c1; color: white; }
+        .badge-electric { background: #28a745; color: white; }
+        .badge-hybrid { background: #20c997; color: white; }
+        
+        .badge-automatic { background: #6f42c1; color: white; }
+        .badge-manual { background: #fd7e14; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Car Management System</h1>
+        </div>
+        
+        <div class="actions">
+            <a href="/cars/add" class="btn btn-primary">Add New Car</a>
+            <a href="/cars/clear" class="btn btn-danger" 
+               onclick="return confirm('Delete all cars?')">Clear All</a>
+        </div>
+        
+        <div class="content">
+            <div th:if="${#lists.isEmpty(cars)}" class="empty-state">
+                <h3>No cars found</h3>
+                <p>Add your first car to get started</p>
+                <a href="/cars/add" class="btn btn-primary">Add Car</a>
+            </div>
+            
+            <table th:if="${!#lists.isEmpty(cars)}" class="car-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>License Plate</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Color</th>
+                        <th>Body Type</th>
+                        <th>Engine</th>
+                        <th>Transmission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="car : ${cars}">
+                        <td th:text="${car.carId}">1</td>
+                        <td th:text="${car.licensePlateNumber}">ABC123</td>
+                        <td th:text="${car.make}">Toyota</td>
+                        <td th:text="${car.model}">Corolla</td>
+                        <td th:text="${car.year}">2021</td>
+                        <td th:text="${car.color}">Blue</td>
+                        <td>
+                            <span th:class="${'badge badge-' + #strings.toLowerCase(car.bodyType)}" 
+                                  th:text="${car.bodyType}">Sedan</span>
+                        </td>
+                        <td>
+                            <span th:class="${'badge badge-' + #strings.toLowerCase(car.engineType)}" 
+                                  th:text="${car.engineType}">Gasoline</span>
+                        </td>
+                        <td>
+                            <span th:class="${'badge badge-' + #strings.toLowerCase(car.transmission)}" 
+                                  th:text="${car.transmission}">Automatic</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Car</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e8;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background-color: #2d5016;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .form-container {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2d5016;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #a8d5b5;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #28a745;
+        }
+        
+        .form-group.required label::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
+        .help-text {
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #d4edda;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .error {
+            border-color: #dc3545 !important;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Add New Car</h1>
+        </div>
+        
+        <div class="form-container">
+            <form th:action="@{/cars/add}" th:object="${car}" method="post" id="carForm">
+                
+                <div class="form-group required">
+                    <label for="licensePlateNumber">License Plate Number</label>
+                    <input type="text" id="licensePlateNumber" th:field="*{licensePlateNumber}" 
+                           placeholder="SHT1191" required>
+                    <div class="help-text">Enter the vehicle's license plate number</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="make">Make</label>
+                    <input type="text" id="make" th:field="*{make}" 
+                           placeholder="Toyota, Ford, Honda" required>
+                    <div class="help-text">Enter the car manufacturer</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="model">Model</label>
+                    <input type="text" id="model" th:field="*{model}" 
+                           placeholder="Corolla, Mustang, Civic" required>
+                    <div class="help-text">Enter the car model name</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" th:field="*{year}" 
+                           placeholder="2021" min="1900" max="2030" required>
+                    <div class="help-text">Enter the manufacturing year</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" th:field="*{color}" 
+                           placeholder="Blue, Red, Silver" required>
+                    <div class="help-text">Enter the car color</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="bodyType">Body Type</label>
+                    <select id="bodyType" th:field="*{bodyType}" required>
+                        <option value="">Select body type</option>
+                        <option th:each="bodyType : ${bodyTypes}" 
+                                th:value="${bodyType}" 
+                                th:text="${bodyType}">Sedan</option>
+                    </select>
+                    <div class="help-text">Choose the vehicle body style</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="engineType">Engine Type</label>
+                    <select id="engineType" th:field="*{engineType}" required>
+                        <option value="">Select engine type</option>
+                        <option th:each="engineType : ${engineTypes}" 
+                                th:value="${engineType}" 
+                                th:text="${engineType}">Gasoline</option>
+                    </select>
+                    <div class="help-text">Choose the type of engine</div>
+                </div>
+                
+                <div class="form-group required">
+                    <label for="transmission">Transmission</label>
+                    <select id="transmission" th:field="*{transmission}" required>
+                        <option value="">Select transmission</option>
+                        <option th:each="transmission : ${transmissions}" 
+                                th:value="${transmission}" 
+                                th:text="${transmission}">Automatic</option>
+                    </select>
+                    <div class="help-text">Choose the transmission type</div>
+                </div>
+                
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Save Car</button>
+                    <a href="/cars" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('carForm');
+            const yearInput = document.getElementById('year');
+            
+            // Set current year as max
+            const currentYear = new Date().getFullYear();
+            yearInput.max = currentYear + 1;
+            
+            // Basic form validation
+            const inputs = form.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+            });
+            
+            function validateField(field) {
+                const value = field.value.trim();
+                const isRequired = field.hasAttribute('required');
+                
+                if (isRequired && !value) {
+                    field.classList.add('error');
+                    showError(field, 'This field is required');
+                } else {
+                    field.classList.remove('error');
+                    hideError(field);
+                }
+                
+                // Year validation
+                if (field.id === 'year' && value) {
+                    const year = parseInt(value);
+                    if (year < 1900 || year > currentYear + 1) {
+                        field.classList.add('error');
+                        showError(field, `Year must be between 1900 and ${currentYear + 1}`);
+                    }
+                }
+            }
+            
+            function showError(field, message) {
+                let errorDiv = field.parentNode.querySelector('.error-message');
+                if (!errorDiv) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message';
+                    field.parentNode.appendChild(errorDiv);
+                }
+                errorDiv.textContent = message;
+            }
+            
+            function hideError(field) {
+                const errorDiv = field.parentNode.querySelector('.error-message');
+                if (errorDiv) {
+                    errorDiv.remove();
+                }
+            }
+            
+            form.addEventListener('submit', function(e) {
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    validateField(input);
+                    if (input.classList.contains('error')) {
+                        isValid = false;
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Please fill in all required fields correctly.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
