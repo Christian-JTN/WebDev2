@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f0f0f0; }
+        h1 { color: #333; text-align: center; }
+        .card { background: white; padding: 20px; margin: 20px auto; max-width: 600px; border-radius: 5px; }
+        .btn { padding: 8px 16px; margin: 5px; text-decoration: none; border-radius: 3px; color: white; }
+        .btn-primary { background-color: #4CAF50; }
+        .btn-warning { background-color: #ff9800; }
+        .btn-danger { background-color: #f44336; }
+    </style>
+</head>
+<body>
+    <h1 th:text="${car.make + ' ' + car.model}">Car Details</h1>
+    
+    <div class="card">
+        <p><strong>ID:</strong> <span th:text="${car.id}">1</span></p>
+        <p><strong>Make:</strong> <span th:text="${car.make}">Toyota</span></p>
+        <p><strong>Model:</strong> <span th:text="${car.model}">Camry</span></p>
+        <p><strong>Year:</strong> <span th:text="${car.year}">2023</span></p>
+        <p><strong>Color:</strong> <span th:text="${car.color}">Blue</span></p>
+        <p><strong>Body Type:</strong> <span th:text="${car.bodyType}">Sedan</span></p>
+        <p><strong>Engine Type:</strong> <span th:text="${car.engineType}">Gasoline</span></p>
+        <p><strong>License Plate:</strong> <span th:text="${car.licensePlate}">ABC-123</span></p>
+        
+        <br>
+        <a th:href="@{/}" class="btn btn-primary">Back to List</a>
+        <a th:href="@{/edit/{id}(id=${car.id})}" class="btn btn-warning">Edit</a>
+        <a th:href="@{/delete/{id}(id=${car.id})}" class="btn btn-danger" onclick="return confirm('Delete?')">Delete</a>
+    </div>
+</body>
+</html>

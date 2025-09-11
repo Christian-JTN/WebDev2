@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.johnverz.webdev1_g1.exception.ResourceNotFoundException;
+
 import jakarta.validation.Valid;
 
 @Controller
@@ -52,14 +54,23 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/view/{id}")
+    public String view(@PathVariable int id, Model model) {
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car", id));
+        
+        model.addAttribute("car", car);
+        return "view";
+    }
+
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
-        Car car = carRepository.findById(id).orElse(null);
-        if (car != null) {
-            CarDTO carDTO = carService.convertToDTO(car);
-            model.addAttribute("carDTO", carDTO);
-            model.addAttribute("carId", id);
-        }
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car", id));
+        
+        CarDTO carDTO = carService.convertToDTO(car);
+        model.addAttribute("carDTO", carDTO);
+        model.addAttribute("carId", id);
         return "edit";
     }
 
@@ -79,6 +90,10 @@ public class HomeController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
+        // Check if car exists before deleting
+        carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car", id));
+        
         carRepository.deleteById(id);
         return "redirect:/";
     }

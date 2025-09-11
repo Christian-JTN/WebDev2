@@ -46,6 +46,10 @@
             background-color: #f44336;
             color: white;
         }
+        .btn-view {
+            background-color: #2196F3;
+            color: white;
+        }
         .btn-add {
             background-color: #4CAF50;
             color: white;
@@ -88,6 +92,7 @@
                 <td th:text="${car.engineType}"></td>
                 <td th:text="${car.licensePlate}"></td>
                 <td>
+                    <a th:href="@{/view/{id}(id=${car.id})}" class="btn btn-view">View</a>
                     <a th:href="@{/edit/{id}(id=${car.id})}" class="btn btn-edit">Edit</a>
                     <a th:href="@{/delete/{id}(id=${car.id})}" class="btn btn-delete" 
                        onclick="return confirm('Delete this car?')">Delete</a>

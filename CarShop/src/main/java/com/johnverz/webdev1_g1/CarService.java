@@ -2,6 +2,8 @@ package com.johnverz.webdev1_g1;
 
 import org.springframework.stereotype.Service;
 
+import com.johnverz.webdev1_g1.exception.ResourceNotFoundException;
+
 @Service
 public class CarService {
 
@@ -25,18 +27,18 @@ public class CarService {
     }
 
     public void update(CarDTO dto, int id) {
-        Car car = carRepository.findById(id).orElse(null);
-        if (car != null) {
-            car.setMake(dto.getMake());
-            car.setModel(dto.getModel());
-            car.setYear(dto.getYear());
-            car.setColor(dto.getColor());
-            car.setBodyType(dto.getBodyType());
-            car.setEngineType(dto.getEngineType());
-            car.setLicensePlate(dto.getLicensePlate());
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Car", id));
+        
+        car.setMake(dto.getMake());
+        car.setModel(dto.getModel());
+        car.setYear(dto.getYear());
+        car.setColor(dto.getColor());
+        car.setBodyType(dto.getBodyType());
+        car.setEngineType(dto.getEngineType());
+        car.setLicensePlate(dto.getLicensePlate());
 
-            carRepository.save(car);
-        }
+        carRepository.save(car);
     }
 
     public CarDTO convertToDTO(Car car) {

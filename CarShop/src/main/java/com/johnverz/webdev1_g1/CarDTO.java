@@ -9,34 +9,26 @@ import jakarta.validation.constraints.Size;
 
 public class CarDTO {
 
-    @NotBlank(message = "Make cannot be empty")
     @Size(min = 2, max = 50, message = "Make must be between 2-50 characters")
     private String make;
 
-    @NotBlank(message = "Model cannot be empty")
     @Size(min = 1, max = 50, message = "Model must be between 1-50 characters")
     private String model;
 
     @NotNull(message = "Year is required")
-    @Min(value = 1900, message = "Year must be at least 1900")
-    @Max(value = 2025, message = "Year must not exceed 2025")
     private Integer year;
 
-    @NotBlank(message = "Color cannot be empty")
     @Size(min = 2, max = 30, message = "Color must be between 2-30 characters")
     private String color;
 
-    @NotBlank(message = "Body type is required")
     @Pattern(regexp = "^(Sedan|SUV|Hatchback|Coupe|Convertible|Wagon|Truck|Van)$", 
              message = "Please select a valid body type")
     private String bodyType;
 
-    @NotBlank(message = "Engine type is required")
     @Pattern(regexp = "^(Gasoline|Diesel|Electric|Hybrid|Plug-in Hybrid)$", 
              message = "Please select a valid engine type")
     private String engineType;
 
-    @NotBlank(message = "License plate cannot be empty")
     @Size(min = 2, max = 15, message = "License plate must be between 2-15 characters")
     @Pattern(regexp = "^[A-Z0-9\\s-]+$", message = "License plate can only contain letters, numbers, spaces, and hyphens")
     private String licensePlate;
