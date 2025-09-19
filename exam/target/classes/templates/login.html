@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="font-family: Arial; margin: 20px; background: #e8f5e8;">
+    <h1 style="color: #2d5a2d;">Login</h1>
+    
+    <div th:if="${param.error}" style="color: #f44336; margin-bottom: 10px;">
+        Invalid username or password.
+    </div>
+    
+    <div th:if="${param.logout}" style="color: #4caf50; margin-bottom: 10px;">
+        You have been logged out successfully.
+    </div>
+    
+    <form th:action="@{/login}" method="post">
+        Username: <input type="text" name="username" style="padding: 5px; margin: 5px;"><br><br>
+        Password: <input type="password" name="password" style="padding: 5px; margin: 5px;"><br><br>
+        <button type="submit" style="background: #4caf50; color: white; padding: 10px; border: none;">Login</button>
+    </form>
+    
+    <br>
+    <p style="color: #666; font-size: 12px;">Username: admin | Password: admin123</p>
+</body>
+</html>

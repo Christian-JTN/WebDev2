@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body style="font-family: Arial; margin: 20px; background: #e8f5e8;">
+    <h1 style="color: #2d5a2d;">Employee</h1>
+    <form th:action="@{/employees/save}" th:object="${employee}" method="post">
+        <input type="hidden" th:field="*{id}">
+        Name: <input type="text" th:field="*{name}" style="padding: 5px; margin: 5px;">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span><br><br>
+        Email: <input type="text" th:field="*{email}" style="padding: 5px; margin: 5px;">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></span><br><br>
+        <button type="submit" style="background: #4caf50; color: white; padding: 10px; border: none;">Save</button>
+        <a href="/employees" style="background: #666; color: white; padding: 10px; text-decoration: none; margin-left: 10px;">Back</a>
+    </form>
+</body>
+</html>
